@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Plataforma Formatura 2026 · Sistema Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f8;
+            color: #0b1a33;
+            padding: 28px 24px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .app {
+            max-width: 1480px;
+            width: 100%;
+        }
+
+        /* ============================================================
+           HEADER PREMIUM
+           ============================================================ */
+        .header {
+            background: linear-gradient(145deg, #0b1a33 0%, #1e3a6b 100%);
+            border-radius: 32px;
+            padding: 28px 36px;
+            margin-bottom: 28px;
+            box-shadow: 0 20px 48px -12px rgba(11, 26, 51, 0.35);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "✦";
+            position: absolute;
+            right: 20px;
+            top: -30px;
+            font-size: 180px;
+            color: rgba(255, 215, 0, 0.035);
+            pointer-events: none;
+            transform: rotate(12deg);
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #fbbf24, #f59e0b, transparent);
+            opacity: 0.3;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 1;
+        }
+
+        .header-left .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-left .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .header-left h1 span {
+            color: #fcd34d;
+            font-weight: 500;
+        }
+
+        .header-left .subtitle {
+            color: #b9c8e0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-left: 58px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            padding: 10px 22px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            color: #facc15;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-badge .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
+        }
+
+        /* ============================================================
+           COUNTDOWN GLOBAL - DESTAQUE
+           ============================================================ */
+        .countdown-global {
+            background: linear-gradient(145deg, #0b1a33 0%, #1e3a6b 100%);
+            border-radius: 24px;
+            padding: 18px 28px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            box-shadow: 0 8px 32px rgba(11, 26, 51, 0.15);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-global::before {
+            content: "⏳";
+            position: absolute;
+            right: -10px;
+            top: -30px;
+            font-size: 140px;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .countdown-global .label {
+            color: #b9c8e0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .countdown-global .label strong {
+            color: #fcd34d;
+            font-weight: 600;
+        }
+
+        .countdown-global .display {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .countdown-global .item {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 8px 14px;
+            text-align: center;
+            min-width: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .countdown-global .item .number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fcd34d;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-global .item .label-small {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .countdown-global .separator {
+            color: #fcd34d;
+            font-size: 1.8rem;
+            font-weight: 300;
+            opacity: 0.3;
+            margin: 0 -2px;
+        }
+
+        .countdown-global .date-info {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .countdown-global .date-info strong {
+            color: #fcd34d;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           TABS NAV
+           ============================================================ */
+        .tabs-nav {
+            display: flex;
+            gap: 6px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 6px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e8edf5;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 28px;
+            border: none;
+            background: transparent;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn:hover {
+            background: #f1f4f9;
+            color: #0b1a33;
+        }
+
+        .tab-btn.active {
+            background: #0b1a33;
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(11, 26, 51, 0.2);
+        }
+
+        .tab-btn .icon {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================================
+           TAB CONTENT
+           ============================================================ */
+        .tab-content {
+            display: none;
+            animation: fadeSlide 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           DASHBOARD CARDS
+           ============================================================ */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 22px 24px 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e8edf5;
+            transition: all 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px -8px rgba(11, 26, 51, 0.08);
+            border-color: #d0dcec;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .card-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b1a33;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .card-value small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #64748b;
+        }
+
+        .card-value .pill {
+            background: #dcfce7;
+            color: #166534;
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* ============================================================
+           SEARCH
+           ============================================================ */
+        .search-bar {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding: 12px 20px 12px 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            background: #ffffff;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            color: #0b1a33;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-wrapper input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-wrapper input:focus {
+            outline: none;
+            border-color: #1e3a6b;
+            box-shadow: 0 4px 20px rgba(30, 58, 107, 0.08);
+        }
+
+        .search-wrapper .icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+           TABLE
+           ============================================================ */
+        .table-container {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e8edf5;
+            overflow: hidden;
+            max-height: 560px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .table-container::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f0f2f8;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+            min-width: 1150px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        thead th {
+            background: #f8fafc;
+            padding: 16px 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        thead th:first-child {
+            padding-left: 24px;
+            min-width: 220px;
+        }
+
+        thead th:last-child {
+            padding-right: 24px;
+        }
+
+        thead th .highlight-trote {
+            color: #1e40af;
+            background: #eff6ff;
+            padding: 2px 12px;
+            border-radius: 12px;
+        }
+
+        thead th .highlight-rifa {
+            color: #92400e;
+            background: #fffbeb;
+            padding: 2px 12px;
+            border-radius: 12px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f1f4f9;
+            transition: background 0.15s ease;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #fafbfd;
+        }
+
+        tbody td {
+            padding: 14px 14px;
+            vertical-align: middle;
+            color: #1e293b;
+            border-bottom: 1px solid #f1f4f9;
+            text-align: center;
+        }
+
+        tbody td:first-child {
+            font-weight: 500;
+            padding-left: 24px;
+            color: #0b1a33;
+            text-align: left;
+        }
+
+        tbody td:last-child {
+            padding-right: 24px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 40px;
+            font-size: 1rem;
+            background: transparent;
+            transition: 0.1s ease;
+        }
+
+        .status-badge.pago {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-badge.nao-pago {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .col-trote {
+            background: #eff6ff;
+            border-radius: 6px;
+        }
+
+        .col-rifa {
+            background: #fffbeb;
+            border-radius: 6px;
+        }
+
+        td.col-trote,
+        td.col-rifa {
+            text-align: center;
+            padding: 8px 6px;
+        }
+
+        /* Alertas */
+        tr.alerta-3-meses {
+            background-color: #fef9e7 !important;
+            border-left: 4px solid #f59e0b;
+        }
+
+        tr.alerta-3-meses:hover {
+            background-color: #fef3c7 !important;
+        }
+
+        tr.alerta-4-meses {
+            background-color: #fee2e2 !important;
+            border-left: 4px solid #dc2626;
+            opacity: 0.85;
+        }
+
+        tr.alerta-4-meses:hover {
+            background-color: #fecaca !important;
+        }
+
+        tr.alerta-4-meses td:first-child::after {
+            content: " 🚫";
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           INFORMAÇÕES - Layout Refinado
+           ============================================================ */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px;
+        }
+
+        .info-main {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 36px;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.02);
+        }
+
+        .info-main .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b1a33;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-main .section-subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f1f4f9;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f1f4f9;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item .emoji-box {
+            width: 44px;
+            height: 44px;
+            background: #f1f4f9;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .info-item .content {
+            flex: 1;
+        }
+
+        .info-item .content .label {
+            font-weight: 600;
+            color: #0b1a33;
+            font-size: 0.9rem;
+        }
+
+        .info-item .content .value {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        .info-item .content .value .highlight {
+            color: #1e3a6b;
+            font-weight: 600;
+        }
+
+        .info-item .content .badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .info-item .content .badge-gold {
+            background: #fef9e7;
+            color: #92400e;
+        }
+
+        .info-item .content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 6px;
+        }
+
+        .info-item .content ul li {
+            padding: 4px 0;
+            color: #475569;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item .content ul li::before {
+            content: "•";
+            color: #1e3a6b;
+            font-weight: 700;
+        }
+
+        /* Sidebar */
+        .info-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px 28px;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .side-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .side-card .icon-big {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+
+        .side-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0b1a33;
+            margin-bottom: 4px;
+        }
+
+        .side-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .side-card .contact {
+            color: #1e3a6b;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 4px;
+            display: inline-block;
+            background: #f1f4f9;
+            padding: 4px 16px;
+            border-radius: 8px;
+        }
+
+        /* ============================================================
+           LEGEND
+           ============================================================ */
+        .legend {
+            display: flex;
+            gap: 24px;
+            padding: 14px 24px;
+            background: #f8fafc;
+            border-radius: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            border: 1px solid #e8edf5;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .legend-color.amarelo {
+            background: #fef9e7;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .legend-color.vermelho {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 10px 18px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+        @media (max-width: 1100px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-side {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .header {
+                padding: 20px 18px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                border-radius: 24px;
+            }
+
+            .header-left h1 {
+                font-size: 1.5rem;
+            }
+            .header-left .subtitle {
+                margin-left: 58px;
+                font-size: 0.8rem;
+            }
+            .header-badge {
+                font-size: 0.75rem;
+                padding: 8px 18px;
+                align-self: flex-start;
+            }
+
+            .countdown-global {
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .countdown-global .display {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .countdown-global .item {
+                min-width: 50px;
+                padding: 6px 10px;
+            }
+
+            .countdown-global .item .number {
+                font-size: 1.3rem;
+            }
+
+            .countdown-global .label {
+                font-size: 0.8rem;
+                justify-content: center;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .card {
+                padding: 16px 18px;
+            }
+            .card-value {
+                font-size: 1.3rem;
+            }
+
+            .search-wrapper {
+                width: 100%;
+            }
+            .search-bar {
+                justify-content: stretch;
+            }
+
+            .table-container {
+                border-radius: 20px;
+                max-height: 420px;
+            }
+
+            table {
+                font-size: 0.75rem;
+                min-width: 950px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 8px;
+            }
+            thead th:first-child,
+            tbody td:first-child {
+                padding-left: 14px;
+            }
+
+            .status-badge {
+                width: 28px;
+                height: 28px;
+                font-size: 0.85rem;
+            }
+
+            .tab-btn {
+                min-width: 140px;
+                padding: 12px 18px;
+                font-size: 0.8rem;
+            }
+
+            .info-main {
+                padding: 24px;
+            }
+            .info-side {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .card-value {
+                font-size: 1.1rem;
+            }
+
+            .tab-btn {
+                min-width: 100%;
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+            .tabs-nav {
+                flex-direction: column;
+            }
+
+            .countdown-global .item {
+                min-width: 44px;
+                padding: 4px 8px;
+            }
+            .countdown-global .item .number {
+                font-size: 1.1rem;
+            }
+            .countdown-global .separator {
+                font-size: 1.2rem;
+            }
+            .countdown-global .date-info {
+                font-size: 0.7rem;
+                justify-content: center;
+            }
+
+            .info-side {
+                grid-template-columns: 1fr;
+            }
+
+            .header-left .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
+            }
+            .header-left h1 {
+                font-size: 1.2rem;
+            }
+            .header-left .subtitle {
+                margin-left: 0;
+                font-size: 0.75rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .info-item .emoji-box {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">🎓</div>
+                    <h1>Formatura <span>2026</span></h1>
+                </div>
+                <div class="subtitle">Plataforma de Gestão · Controle de Pagamentos e Informações</div>
+            </div>
+            <div class="header-right">
+                <div class="header-badge">
+                    <span class="dot"></span>
+                    Sistema ativo · Turma 2026
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        COUNTDOWN GLOBAL - DESTAQUE EM TODAS AS PÁGINAS
+        ============================================================ -->
+        <div class="countdown-global">
+            <div class="label">
+                ⏳ <strong>Contagem Regressiva</strong> para a formatura
+            </div>
+            <div class="display" id="countdownDisplayGlobal">
+                <div class="item">
+                    <div class="number" id="globalDias">--</div>
+                    <div class="label-small">Dias</div>
+                </div>
+                <span class="separator">:</span>
+                <div class="item">
+                    <div class="number" id="globalHoras">--</div>
+                    <div class="label-small">Horas</div>
+                </div>
+                <span class="separator">:</span>
+                <div class="item">
+                    <div class="number" id="globalMinutos">--</div>
+                    <div class="label-small">Minutos</div>
+                </div>
+                <span class="separator">:</span>
+                <div class="item">
+                    <div class="number" id="globalSegundos">--</div>
+                    <div class="label-small">Segundos</div>
+                </div>
+            </div>
+            <div class="date-info">
+                📅 <strong>11 de Dezembro de 2026</strong> · 18:00h
+            </div>
+        </div>
+
+        <!-- ============================================================
+        TABS NAV
+        ============================================================ -->
+        <nav class="tabs-nav" id="tabsNav">
+            <button class="tab-btn active" data-tab="pagamentos">
+                <span class="icon">📊</span> Controle de Pagamentos
+            </button>
+            <button class="tab-btn" data-tab="informacoes">
+                <span class="icon">📋</span> Informações da Formatura
+            </button>
+        </nav>
+
+        <!-- ============================================================
+        ABA 1: CONTROLE DE PAGAMENTOS
+        ============================================================ -->
+        <div class="tab-content active" id="tab-pagamentos">
+            <!-- Dashboard -->
+            <section class="dashboard-cards">
+                <div class="card">
+                    <div class="card-label">Total de Participantes</div>
+                    <div class="card-value">21 <small>alunos</small></div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Período Controlado</div>
+                    <div class="card-value">Fev – Jul <small>2026</small></div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Eventos Cadastrados</div>
+                    <div class="card-value">Trote · Rifa</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Status do Sistema</div>
+                    <div class="card-value">✅ Ativo <span class="pill">em dia</span></div>
+                </div>
+            </section>
+
+            <!-- Search -->
+            <div class="search-bar">
+                <div class="search-wrapper">
+                    <span class="icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Buscar participante..." autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <span>⚠️</span>
+                <div><strong>Alerta de atraso:</strong> Considera apenas os meses (Fevereiro, Março, Abril, Maio, Junho, Julho).
+                Trote e Rifa <strong>não</strong> são contados.</div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome Completo</th>
+                            <th>Fevereiro</th>
+                            <th>Março</th>
+                            <th><span class="highlight-trote">Trote Março</span></th>
+                            <th>Abril</th>
+                            <th><span class="highlight-rifa">Rifa Abril</span></th>
+                            <th>Maio</th>
+                            <th>Junho</th>
+                            <th>Julho</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <span class="legend-item">
+                    <span class="legend-color amarelo"></span>
+                    3 meses em aberto <span style="color:#f59e0b;font-weight:500;">(atenção)</span>
+                </span>
+                <span class="legend-item">
+                    <span class="legend-color vermelho"></span>
+                    4+ meses em aberto <span style="color:#dc2626;font-weight:500;">(cortado)</span>
+                </span>
+                <span class="legend-item">
+                    <span class="status-badge pago" style="width:24px;height:24px;font-size:0.85rem;">✅</span>
+                    Pago
+                </span>
+                <span class="legend-item">
+                    <span class="status-badge nao-pago" style="width:24px;height:24px;font-size:0.85rem;">❌</span>
+                    Não pago
+                </span>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        ABA 2: INFORMAÇÕES
+        ============================================================ -->
+        <div class="tab-content" id="tab-informacoes">
+            <div class="info-grid">
+                <!-- Main -->
+                <div class="info-main">
+                    <div class="section-title">📋 Informações Oficiais</div>
+                    <div class="section-subtitle">Todos os detalhes sobre a formatura 2026</div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">📍</div>
+                        <div class="content">
+                            <div class="label">Local do Evento</div>
+                            <div class="value"><span class="highlight">Clube dos Santos</span></div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">👔</div>
+                        <div class="content">
+                            <div class="label">Dress Code &amp; Paleta</div>
+                            <div class="value">
+                                Roupas de grife e trajes de festa na paleta <span class="highlight">azul</span>
+                                <span class="badge">Elegante</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">👥</div>
+                        <div class="content">
+                            <div class="label">Convidados</div>
+                            <div class="value">
+                                Cada formando tem direito a <span class="highlight">5 convidados</span>
+                                <span class="badge">Incluso</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">💰</div>
+                        <div class="content">
+                            <div class="label">Convidados Extras</div>
+                            <div class="value">
+                                Passou de 5 convidados: <span class="highlight">R$ 50,00</span> por adicional
+                                <span class="badge badge-gold">Taxa extra</span>
+                                <ul>
+                                    <li>Crianças de colo até 3-4 anos <strong>não pagam</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">🎵</div>
+                        <div class="content">
+                            <div class="label">Música &amp; Entretenimento</div>
+                            <div class="value">
+                                Músicas formais com repertório internacional e baile
+                                <span class="badge">Clássicos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="emoji-box">🍽️</div>
+                        <div class="content">
+                            <div class="label">Serviço de Alimentação</div>
+                            <div class="value">
+                                <ul>
+                                    <li>🥂 Entradas durante o evento</li>
+                                    <li>🍽️ Jantar no meio do evento</li>
+                                    <li>🍰 Sobremesa ao final</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="info-side">
+                    <!-- Contato -->
+                    <div class="side-card">
+                        <div class="icon-big">📧</div>
+                        <h3>Contato da Comissão</h3>
+                        <p>Dúvidas ou sugestões? Entre em contato com a comissão organizadora.</p>
+                        <div class="contact">fterceiroa@gmail.com</div>
+                    </div>
+
+                    <!-- Organização -->
+                    <div class="side-card">
+                        <div class="icon-big">🎯</div>
+                        <h3>Organização</h3>
+                        <p>
+                            Comissão de formatura trabalhando para tornar este momento inesquecível.
+                            <br><span style="color:#64748b;font-size:0.8rem;">Turma 2026</span>
+                        </p>
+                    </div>
+
+                    <!-- Evento -->
+                    <div class="side-card">
+                        <div class="icon-big">🎉</div>
+                        <h3>Sobre o Evento</h3>
+                        <p>
+                            Uma noite de gala para celebrar a conquista de toda a turma.
+                            <br><span style="color:#f59e0b;font-weight:500;">✨ Não perca!</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. DADOS DOS PARTICIPANTES
+        // ============================================================
+        const participants = [
+            { name: "Ana Lucia da Cruz Martins", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "❌",
+                Jun: "❌", Jul: "❌" },
+            { name: "Andrenilson Conceição Rocha", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "❌", Mai: "❌",
+                Jun: "❌", Jul: "❌" },
+            { name: "Antônia Fabricia Fontineles Cardoso", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅",
+                Mai: "✅", Jun: "✅", Jul: "❌" },
+            { name: "Emilly Cristiny Alves", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "❌", Mai: "✅",
+                Jun: "❌", Jul: "❌" },
+            { name: "Gabriel Ferreira Alves", Fev: "✅", Mar: "✅", Trote: "❌", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Gustavo Galvão Rezende", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "✅" },
+            { name: "Hakelly Borges Barcelos", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "✅" },
+            { name: "Helen Vilela Rodrigues", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Hevilly Andreina Brito de Souza", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅",
+                Mai: "✅", Jun: "✅", Jul: "✅" },
+            { name: "Isabella Silva Ferreira", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "❌",
+                Jun: "✅", Jul: "❌" },
+            { name: "Jeniffer França da Silva", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "❌", Rifa: "❌", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "João Victor Araújo de Jesus", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "❌", Rifa: "❌", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Lara Kawany da Silva de Melo", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "❌",
+                Jun: "❌", Jul: "❌" },
+            { name: "Letícia da Silva Santos", Fev: "✅", Mar: "✅", Trote: "❌", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Luismar Nunes Barbosa", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "❌", Mai: "✅",
+                Jun: "❌", Jul: "❌" },
+            { name: "Ana Luiza de Jesus Batista", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "❌", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Marcos Vinícius Saraiva Machado", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅",
+                Mai: "✅", Jun: "❌", Jul: "❌" },
+            { name: "Maria Neuziane Dutra Teixeira", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "❌" },
+            { name: "Ryan Pereira Matos", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "✅", Rifa: "✅", Mai: "✅", Jun: "✅",
+                Jul: "❌" },
+            { name: "Victor dos Passos Silvério", Fev: "✅", Mar: "✅", Trote: "❌", Abr: "✅", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "✅" },
+            { name: "Thauanny Santos de Sousa", Fev: "✅", Mar: "✅", Trote: "✅", Abr: "❌", Rifa: "✅", Mai: "✅",
+                Jun: "✅", Jul: "❌" }
+        ];
+
+        // ============================================================
+        // 2. TABELA
+        // ============================================================
+        const tbody = document.getElementById('tableBody');
+        const searchInput = document.getElementById('searchInput');
+
+        function contarMesesAberto(p) {
+            const meses = [p.Fev, p.Mar, p.Abr, p.Mai, p.Jun, p.Jul];
+            return meses.filter(status => status === '❌').length;
+        }
+
+        function getAlertaClass(p) {
+            const meses = contarMesesAberto(p);
+            if (meses >= 4) return 'alerta-4-meses';
+            if (meses === 3) return 'alerta-3-meses';
+            return '';
+        }
+
+        function statusBadge(value) {
+            const isPago = value === '✅';
+            const cls = isPago ? 'pago' : 'nao-pago';
+            return `<span class="status-badge ${cls}">${value}</span>`;
+        }
+
+        function renderTable(filter = '') {
+            const filtered = participants.filter(p =>
+                p.name.toLowerCase().includes(filter.toLowerCase().trim())
+            );
+
+            let html = '';
+            for (const p of filtered) {
+                const alertaClass = getAlertaClass(p);
+                html += `<tr class="${alertaClass}">
+                    <td>${p.name}</td>
+                    <td>${statusBadge(p.Fev)}</td>
+                    <td>${statusBadge(p.Mar)}</td>
+                    <td class="col-trote">${statusBadge(p.Trote)}</td>
+                    <td>${statusBadge(p.Abr)}</td>
+                    <td class="col-rifa">${statusBadge(p.Rifa)}</td>
+                    <td>${statusBadge(p.Mai)}</td>
+                    <td>${statusBadge(p.Jun)}</td>
+                    <td>${statusBadge(p.Jul)}</td>
+                </tr>`;
+            }
+
+            if (filtered.length === 0) {
+                html =
+                    `<tr><td colspan="9" style="text-align:center;padding:40px 0;color:#94a3b8;">Nenhum participante encontrado</td></tr>`;
+            }
+
+            tbody.innerHTML = html;
+        }
+
+        searchInput.addEventListener('input', function() {
+            renderTable(this.value);
+        });
+
+        renderTable();
+
+        // ============================================================
+        // 3. TABS
+        // ============================================================
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            pagamentos: document.getElementById('tab-pagamentos'),
+            informacoes: document.getElementById('tab-informacoes')
+        };
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                Object.values(tabContents).forEach(c => c.classList.remove('active'));
+
+                this.classList.add('active');
+                const tabId = this.dataset.tab;
+                if (tabContents[tabId]) tabContents[tabId].classList.add('active');
+            });
+        });
+
+        // ============================================================
+        // 4. COUNTDOWN GLOBAL - 11/12/2026 18:00
+        // ============================================================
+        const targetDate = new Date('2026-12-11T18:00:00').getTime();
+
+        function updateGlobalCountdown() {
+            const now = Date.now();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                ['globalDias', 'globalHoras', 'globalMinutos', 'globalSegundos'].forEach(id =>
+                    document.getElementById(id).textContent = '00'
+                );
+                return;
+            }
+
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            document.getElementById('globalDias').textContent = String(d).padStart(2, '0');
+            document.getElementById('globalHoras').textContent = String(h).padStart(2, '0');
+            document.getElementById('globalMinutos').textContent = String(m).padStart(2, '0');
+            document.getElementById('globalSegundos').textContent = String(s).padStart(2, '0');
+        }
+
+        updateGlobalCountdown();
+        setInterval(updateGlobalCountdown, 1000);
+    </script>
+</body>
+</html>
